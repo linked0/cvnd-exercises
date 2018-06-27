@@ -1,4 +1,5 @@
 # Colab 환경세팅
+<pre><code>
 ### 구글 드라이브 연결
 !apt-get install -y -qq software-properties-common python-software-properties module-init-tools > /dev/null
 !add-apt-repository -y ppa:alessandro-strada/ppa 2>&1 > /dev/null
@@ -43,6 +44,7 @@ url='https://github.com/linked0/' + repo + '.git'
 %cd $sub_dir
 !ls
 
+</pre></code>
 
 # Computer Vision Nanodegree Program, Exercises
 

@@ -1,3 +1,49 @@
+# Colab 환경세팅
+### 구글 드라이브 연결
+!apt-get install -y -qq software-properties-common python-software-properties module-init-tools > /dev/null
+!add-apt-repository -y ppa:alessandro-strada/ppa 2>&1 > /dev/null
+!apt-get update -qq 2>&1 > /dev/null
+!apt-get -y install -qq google-drive-ocamlfuse fuse > /dev/nul
+
+from google.colab import auth
+auth.authenticate_user()
+from oauth2client.client import GoogleCredentials
+creds = GoogleCredentials.get_application_default()
+import getpass
+!google-drive-ocamlfuse -headless -id={creds.client_id} -secret={creds.client_secret} < /dev/null 2>&1 | grep URL
+vcode = getpass.getpass()
+!echo {vcode} | google-drive-ocamlfuse -headless -id={creds.client_id} -secret={creds.client_secret}
+
+!mkdir -p drive
+!google-drive-ocamlfuse drive
+!ls
+
+### 경로 변수로 저장, 나중에 “!cp README.md $gnote/carnd”로 쓸 수 있음.
+gnote="./drive/Colab\ Notebooks" 
+
+### Data download from google drive
+#"!curl -OJL https://drive.google.com/uc?id="의 id 부분에 다음의 구글 공유 링크중에 "/d/" 와 "/view?usp=sharing" 사이의 
+#스트링을 복사하면됨.https://drive.google.com/file/d/17oCJI4zn6OuipmCD4FAZM3Oq_rl5UJLj/view?usp=sharing
+ 
+### file downlaod
+#from google.colab import files
+#files.download(white_output)
+ 
+### git partially cloning
+repo='cvnd-exercises'
+sub_dir='1_2_Convolutional_Filters_Edge_Detection'
+url='https://github.com/linked0/' + repo + '.git'
+!mkdir $repo
+%cd $repo
+!git init
+!git remote add -f origin $url
+!git config core.sparsecheckout true
+!echo $sub_dir >> .git/info/sparse-checkout
+!git pull --recurse-submodules origin master
+%cd $sub_dir
+!ls
+
+
 # Computer Vision Nanodegree Program, Exercises
 
 This repository contains code exercises and materials for Udacity's [Computer Vision Nanodegree](https://www.udacity.com/course/computer-vision-nanodegree--nd891) program. It consists of tutorial notebooks that demonstrate, or challenge you to complete, various computer vision applications and techniques. These notebooks depend on a number of software packages to run, and so, we suggest that you create a local environment with these dependencies by following the instructions below.

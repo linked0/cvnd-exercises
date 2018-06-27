@@ -43,8 +43,7 @@ url='https://github.com/linked0/' + repo + '.git'
 !git pull --recurse-submodules origin master
 %cd $sub_dir
 !ls
-
-</pre></code>
+</code></pre>
 
 # Computer Vision Nanodegree Program, Exercises
 

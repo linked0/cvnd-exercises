@@ -1,6 +1,6 @@
 # Colab 환경세팅
 <pre><code>
-### 구글 드라이브 연결
+# 구글 드라이브 연결
 !apt-get install -y -qq software-properties-common python-software-properties module-init-tools > /dev/null
 !add-apt-repository -y ppa:alessandro-strada/ppa 2>&1 > /dev/null
 !apt-get update -qq 2>&1 > /dev/null
@@ -19,18 +19,18 @@ vcode = getpass.getpass()
 !google-drive-ocamlfuse drive
 !ls
 
-### 경로 변수로 저장, 나중에 “!cp README.md $gnote/carnd”로 쓸 수 있음.
+# 경로 변수로 저장, 나중에 “!cp README.md $gnote/carnd”로 쓸 수 있음.
 gnote="./drive/Colab\ Notebooks" 
 
-### Data download from google drive
+# Data download from google drive
 #"!curl -OJL https://drive.google.com/uc?id="의 id 부분에 다음의 구글 공유 링크중에 "/d/" 와 "/view?usp=sharing" 사이의 
 #스트링을 복사하면됨.https://drive.google.com/file/d/17oCJI4zn6OuipmCD4FAZM3Oq_rl5UJLj/view?usp=sharing
  
-### file downlaod
+# file downlaod
 #from google.colab import files
 #files.download(white_output)
  
-### git partially cloning
+# git partially cloning
 repo='cvnd-exercises'
 sub_dir='1_2_Convolutional_Filters_Edge_Detection'
 url='https://github.com/linked0/' + repo + '.git'
